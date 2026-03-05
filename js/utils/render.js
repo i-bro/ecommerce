@@ -141,3 +141,98 @@ export function renderProductDetail(product, container) {
     detailGrid.append(img, infoDiv);
     container.appendChild(detailGrid);
 }
+
+export function renderCartSummary(container) {
+    if (!container) return;
+    container.innerHTML = '';
+
+    const summaryDiv = document.createElement('div');
+    summaryDiv.classList.add('cart-summary-card');
+
+    // Title
+    const title = document.createElement('h3');
+    title.textContent = 'Order Summary';
+
+    // Subtotal Row
+    const totalRow = document.createElement('div');
+    totalRow.classList.add('summary-row');
+    
+    const label = document.createElement('span');
+    label.textContent = 'Total Amount:';
+    
+    const amount = document.createElement('span');
+    amount.classList.add('grand-total');
+    // Using our new service method
+    amount.textContent = cartService.getFormattedTotal();
+
+    // Checkout Button
+    const checkoutBtn = document.createElement('button');
+    checkoutBtn.classList.add('btn-checkout');
+    checkoutBtn.textContent = 'Proceed to Payment';
+    checkoutBtn.onclick = () => alert('Checkout flow starting...');
+
+    totalRow.append(label, amount);
+    summaryDiv.append(title, totalRow, checkoutBtn);
+    container.appendChild(summaryDiv);
+}
+
+export function renderCartPage(items, container) {
+    if (!container) return;
+    container.innerHTML = '';
+
+    if (items.length === 0) {
+        container.innerHTML = `
+            <div class="empty-cart">
+                <p>Your cart is empty!</p>
+                <a href="index.html" class="btn-primary">Continue Shopping</a>
+            </div>`;
+        return;
+    }
+
+    const table = document.createElement('div');
+    table.classList.add('cart-table');
+
+    items.forEach(item => {
+        const row = document.createElement('div');
+        row.classList.add('cart-row');
+
+        // Using your class methods: item.product.formattedPrice and item.lineTotal
+        row.innerHTML = `
+            <img src="${item.product.image}" width="80">
+            <div class="item-details">
+                <h3>${item.product.name}</h3>
+                <p>Price: ${item.product.formattedPrice}</p>
+            </div>
+            <div class="item-qty">
+                <button class="qty-btn minus" data-id="${item.product.id}">-</button>
+                <span>${item.quantity}</span>
+                <button class="qty-btn plus" data-id="${item.product.id}">+</button>
+            </div>
+            <div class="item-total">
+                Subtotal: $${item.lineTotal.toFixed(2)}
+            </div>
+            <button class="remove-btn" data-id="${item.product.id}">Remove</button>
+        `;
+
+        // Logic for buttons
+        row.querySelector('.plus').onclick = () => {
+            cartService.updateQty(item.product.id, 1);
+            renderCartPage(cartService.items, container); // Re-render page
+        };
+
+        row.querySelector('.minus').onclick = () => {
+            cartService.updateQty(item.product.id, -1);
+            renderCartPage(cartService.items, container);
+        };
+
+        row.querySelector('.remove-btn').onclick = () => {
+            cartService.removeItem(item.product.id);
+            renderCartPage(cartService.items, container);
+        };
+
+        table.appendChild(row);
+    });
+
+    container.appendChild(table);
+    renderCartSummary(); // Function to update the final total at the bottom
+}

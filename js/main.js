@@ -1,6 +1,7 @@
 import { apiService } from './services/apiService.js';
 import { cartService } from './services/cartService.js';
 import { renderGrid } from './utils/render.js';
+import {initCartPage} from './cart-page.js';
 
 async function initApp() {
   cartService.init();
@@ -28,6 +29,18 @@ export function updateBadge() {
   } else {
     console.warn("Element #cart-count not found in the DOM.");
   }
+  initCartPage();
+  const cartBtn = document.getElementById('cart-toggle');
+
+if (cartBtn) {
+    cartBtn.addEventListener('click', () => {
+        // This moves the user to your dedicated cart page
+        window.location.href = 'cart-page.html';
+    });
+    
+    // UI Touch: Change cursor to pointer so users know it's clickable
+    cartBtn.style.cursor = 'pointer';
+}
 }
 
 window.addEventListener('cartUpdated', updateBadge);

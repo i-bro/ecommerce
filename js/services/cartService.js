@@ -41,6 +41,36 @@ export const cartService = {
     // Dispatch custom event so UI knows to update the badge
     window.dispatchEvent(new Event('cartUpdated'));
   },
+  removeItem(productId) {
+        // We keep only the items that DO NOT match the productId
+        this.items = this.items.filter(item => item.product.id !== productId);
+        
+        // Save the new list to localStorage and trigger UI updates
+        this.save();
+        
+        console.log(`Product ${productId} removed. Items remaining:`, this.items.length);
+    },
+
+  getTotal(){
+    return this.items.reduce((sum, item) => {
+        return sum + item.lineTotal;
+    }, 0)
+  },
+  updateQty(productId, delta) {
+    const item = this.items.find(i => i.product.id === productId);
+    if (item) {
+        if (delta > 0) {
+            item.increment(); // This checks against item.product.stock
+        } else {
+            item.decrement(); // This ensures quantity doesn't go below 1
+        }
+        this.save();
+    }
+},
+
+  getFormattedTotal() {
+    return `$${this.getTotal().toFixed(2)}`;
+  },
 
   get count() {
     return this.items.reduce((sum, item) => sum + item.quantity, 0);

@@ -1,0 +1,33 @@
+.cart-summary-card {
+    background: #f8fafc;
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    position: sticky;
+    top: 20px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin: 1.5rem 0;
+    border-top: 2px solid #e2e8f0;
+    padding-top: 1rem;
+}
+
+.grand-total {
+    color: #2563eb; /* Royal Blue */
+}
+
+.btn-checkout {
+    width: 100%;
+    padding: 1rem;
+    background: #10b981; /* Success Green */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
