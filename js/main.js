@@ -2,14 +2,18 @@ import { apiService } from './services/apiService.js';
 import { cartService } from './services/cartService.js';
 import { renderGrid } from './utils/render.js';
 import {initCartPage} from './cart-page.js';
+import {appendProductsToGrid} from './utils/render.js'
 
+
+let allLoadedProducts = []
 async function initApp() {
   cartService.init();
   updateBadge();
 
   try {
     const products = await apiService.fetchProducts();
-    renderGrid(products, document.getElementById('product-grid'));
+    allLoadedProducts = products;
+    renderGrid(allLoadedProducts, document.getElementById('product-grid'));
   } catch (error) {
     document.getElementById('app-grid').innerHTML = `
       <div class="error-state">
@@ -19,6 +23,61 @@ async function initApp() {
     `;
   }
 }
+
+function applyCurrentSort(products) {
+    const sortSelect = document.getElementById('sort-price');
+    if (!sortSelect) return products;
+
+    const sortBy = sortSelect.value;
+    const sorted = [...products]; // Copy to avoid mutating original
+
+    if (sortBy === 'low') {
+        sorted.sort((a, b) => a.price - b.price);
+    } else if (sortBy === 'high') {
+        sorted.sort((a, b) => b.price - a.price);
+    }
+    
+    return sorted;
+}
+
+let currentOffset = 0;
+const LIMIT = 12; // How many to load per click
+
+async function loadMoreProducts() {
+    const loadBtn = document.getElementById('load-more-btn');
+    loadBtn.textContent = 'Loading...';
+    loadBtn.disabled = true;
+
+    try {
+        // Increase the skip by the limit (0 -> 12 -> 24...)
+        currentOffset += LIMIT;
+
+        // Fetch next batch
+        const nextProducts = await apiService.fetchProducts(LIMIT, currentOffset);
+
+        if (nextProducts.length > 0) {
+            // 🎯 CRITICAL: Use a new 'appendGrid' logic or modify renderGrid 
+            // so it doesn't clear the innerHTML!
+            // appendProductsToGrid(nextProducts);
+            allLoadedProducts = [...allLoadedProducts, ...nextProducts]
+            const sortedList = applyCurrentSort(allLoadedProducts);
+            renderGrid(sortedList, document.getElementById('product-grid'))
+            
+            loadBtn.textContent = 'Load More';
+            loadBtn.disabled = false;
+        }
+         else {
+            loadBtn.textContent = 'No more products';
+            loadBtn.style.display = 'none';
+        }
+    } catch (error) {
+        console.error("Pagination error:", error);
+        loadBtn.textContent = 'Error loading more';
+    }
+}
+
+
+
 
 // In js/main.js
 export function updateBadge() {
@@ -45,3 +104,17 @@ if (cartBtn) {
 
 window.addEventListener('cartUpdated', updateBadge);
 document.addEventListener('DOMContentLoaded', initApp);
+const loadBtn = document.getElementById('load-more-btn');
+if (loadBtn) {
+    loadBtn.addEventListener('click', loadMoreProducts);
+}
+
+const sortSelect = document.getElementById('sort-price');
+
+if (sortSelect) {
+    sortSelect.addEventListener('change', () => {
+        // Sort the existing products and redraw
+        const sorted = applyCurrentSort(allLoadedProducts);
+        renderGrid(sorted, document.getElementById('product-grid'));
+    });
+}

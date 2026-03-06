@@ -1,13 +1,13 @@
 export class Product {
-  constructor({ id, title, price, description, category, thumbnail, rating, stock }) {
-    this.id = id;
-    this.name = title; 
-    this.price = price;
-    this.description = description;
-    this.category = category;
-    this.image = thumbnail;
-    this.rating = rating;
-    this.stock = stock;
+  constructor(data = {}) {
+    this.id = data.id;
+    this.name = data.title || data.name; 
+    this.price = data.price;
+    this.description = data.description;
+    this.category = data.category;
+    this.image = data.thumbnail || data.image;
+    this.rating = data.rating;
+    this.stock = data.stock;
   }
 
   get formattedPrice() { return `$${this.price.toFixed(2)}`; }

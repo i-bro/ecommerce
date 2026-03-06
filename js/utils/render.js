@@ -1,4 +1,5 @@
 import { cartService } from '../services/cartService.js';
+import { Product } from '../models/Product.js';
 
 /**
  * Creates a single product card element
@@ -84,6 +85,22 @@ function showToast(message) {
         container.appendChild(toast);
         setTimeout(() => toast.remove(), 3000);
     }
+}
+
+// Add this to your render.js
+export function appendProductsToGrid(products) {
+    const container = document.getElementById('product-grid');
+    if (!container) return;
+
+    const fragment = document.createDocumentFragment();
+
+    products.forEach(product => {
+        // Use your existing createProductCard function!
+        const card = createProductCard(product);
+        fragment.appendChild(card);
+    });
+
+    container.appendChild(fragment);
 }
 
 export function renderProductDetail(product, container) {
@@ -195,7 +212,7 @@ export function renderCartPage(items, container) {
     items.forEach(item => {
         const row = document.createElement('div');
         row.classList.add('cart-row');
-
+        // debugger
         // Using your class methods: item.product.formattedPrice and item.lineTotal
         row.innerHTML = `
             <img src="${item.product.image}" width="80">
@@ -234,5 +251,9 @@ export function renderCartPage(items, container) {
     });
 
     container.appendChild(table);
-    renderCartSummary(); // Function to update the final total at the bottom
+    const summaryContainer = document.getElementById('cart-total-section');
+    if (summaryContainer) {
+        renderCartSummary(summaryContainer);
+    }
+    // renderCartSummary(); // Function to update the final total at the bottom
 }
