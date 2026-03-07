@@ -53,3 +53,18 @@ body { font-family: 'Inter', sans-serif; background: var(--light); color: var(--
     transition: transform 0.3s ease;
 }
 .hidden { transform: translateX(100%); }
+
+.product-card {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    /* This makes the cards feel "fluid" when they re-order */
+}
+
+/* Optional: Fade in animation for new products */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.product-card {
+    animation: fadeIn 0.4s ease-out forwards;
+}

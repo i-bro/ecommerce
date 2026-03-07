@@ -2,13 +2,14 @@ import { apiService } from './services/apiService.js';
 import { cartService } from './services/cartService.js';
 import { renderGrid } from './utils/render.js';
 import {initCartPage} from './cart-page.js';
-import {appendProductsToGrid} from './utils/render.js'
+import {appendProductsToGrid} from './utils/render.js';
 
 
 let allLoadedProducts = []
 async function initApp() {
   cartService.init();
   updateBadge();
+  initCategories();
 
   try {
     const products = await apiService.fetchProducts();
@@ -22,6 +23,56 @@ async function initApp() {
       </div>
     `;
   }
+}
+
+async function initCategories() {
+    const categorySelect = document.getElementById('category-filter');
+    if (!categorySelect) return;
+
+    try {
+        const categories = await apiService.fetchCategories();
+        
+        categories.forEach(cat => {
+            const option = document.createElement('option');
+            option.value = cat;
+            option.textContent = cat.charAt(0).toUpperCase() + cat.slice(1); // Capitalize first letter
+            categorySelect.appendChild(option);
+        });
+    } catch (err) {
+        console.error("Failed to load categories", err);
+    }
+}
+
+// Handle Category Change
+const categoryFilter = document.getElementById('category-filter');
+if (categoryFilter) {
+    categoryFilter.addEventListener('change', async (e) => {
+        const selectedCategory = e.target.value;
+        currentOffset = 0; // Reset pagination for new category
+
+        const loadBtn = document.getElementById('load-more-btn');
+    if (loadBtn) {
+        loadBtn.disabled = false;
+        loadBtn.style.display = 'block';
+        loadBtn.textContent = 'Load More';
+    }
+
+        try {
+            // Fetch products for this specific category
+            const filteredProducts = await apiService.fetchProductsByCategory(selectedCategory, LIMIT, currentOffset);
+            
+            // Update our global state and UI
+            allLoadedProducts = filteredProducts;
+            renderGrid(allLoadedProducts, document.getElementById('product-grid'));
+            
+            // Re-show the "Load More" button if it was hidden
+            const loadBtn = document.getElementById('load-more-btn');
+            if (loadBtn) loadBtn.style.display = 'block';
+            
+        } catch (err) {
+            console.error("Filtering error", err);
+        }
+    });
 }
 
 function applyCurrentSort(products) {
@@ -45,6 +96,7 @@ const LIMIT = 12; // How many to load per click
 
 async function loadMoreProducts() {
     const loadBtn = document.getElementById('load-more-btn');
+    const selectedCategory = document.getElementById('category-filter').value;
     loadBtn.textContent = 'Loading...';
     loadBtn.disabled = true;
 
@@ -53,7 +105,7 @@ async function loadMoreProducts() {
         currentOffset += LIMIT;
 
         // Fetch next batch
-        const nextProducts = await apiService.fetchProducts(LIMIT, currentOffset);
+        const nextProducts = await apiService.fetchProductsByCategory(selectedCategory, LIMIT, currentOffset);
 
         if (nextProducts.length > 0) {
             // 🎯 CRITICAL: Use a new 'appendGrid' logic or modify renderGrid 
@@ -75,6 +127,7 @@ async function loadMoreProducts() {
         loadBtn.textContent = 'Error loading more';
     }
 }
+
 
 
 

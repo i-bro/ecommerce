@@ -28,5 +28,21 @@ export const apiService = {
         if (!response.ok) throw new Error("Product not found");
         const data = await response.json();
         return new Product(data); // Map to your model!
-    }
+    },
+
+    async fetchCategories() {
+    const resp = await fetch('https://dummyjson.com/products/category-list');
+    return await resp.json(); // Returns an array of strings: ["beauty", "fragrances", ...]
+  },
+
+  async fetchProductsByCategory(category, limit = 12, skip = 0) {
+    const url = category === 'all' 
+      ? `${BASE_URL}?limit=${limit}&skip=${skip}`
+      : `${BASE_URL}/category/${category}?limit=${limit}&skip=${skip}`;
+      
+    const resp = await fetch(url);
+    const data = await resp.json();
+    return data.products.map(item => new Product(item));
+  }
 };
+
