@@ -68,3 +68,68 @@ body { font-family: 'Inter', sans-serif; background: var(--light); color: var(--
 .product-card {
     animation: fadeIn 0.4s ease-out forwards;
 }
+
+.loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.7); /* Light transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Stay on top of everything */
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #3498db; /* Your theme color */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Container that holds all toasts */
+/* Container */
+/* The wrapper in the bottom corner */
+.app-notification-container {
+    position: fixed !important;
+    bottom: 30px !important; /* Distance from bottom of the SCREEN */
+    right: 30px !important;  /* Distance from right of the SCREEN */
+    width: auto;
+    height: auto;
+    display: flex !important;
+    flex-direction: column-reverse; /* Newest toasts appear at the bottom */
+    gap: 10px;
+    z-index: 2147483647 !important; /* Maximum possible Z-index value */
+    pointer-events: none; /* Let clicks pass through the container itself */
+}
+
+.app-notification-item {
+    pointer-events: auto; /* Re-enable clicks for the actual toast */
+    background: #333 !important;
+    color: white !important;
+    padding: 16px 24px;
+    border-radius: 8px;
+    min-width: 280px;
+    max-width: 350px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    border-left: 5px solid #2563eb;
+    font-family: sans-serif;
+    
+    /* Ensure it doesn't inherit alignment from parents */
+    text-align: left;
+    
+    animation: slideInRight 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, 
+               fadeOut 0.4s ease-in 2.6s forwards;
+}
+
+.app-notification-item.success { border-left-color: #22c55e !important; } /* Green */
+.app-notification-item.danger { border-left-color: #ef4444 !important; }  /* Red */

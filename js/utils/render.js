@@ -75,16 +75,26 @@ export function renderGrid(products, container) {
 /**
  * Helper for User Feedback (Requirement #8)
  */
-function showToast(message) {
-    const toast = document.createElement('div');
-    toast.className = 'toast animate__animated animate__fadeInUp';
-    toast.textContent = message;
+export function showToast(message, type = 'success') {
+    let container = document.getElementById('toast-container');
     
-    const container = document.getElementById('toast-container');
-    if (container) {
-        container.appendChild(toast);
-        setTimeout(() => toast.remove(), 3000);
+    if (!container) {
+        container = document.createElement('div');
+        container.id = 'toast-container';
+        // Use a unique name to avoid Bootstrap conflicts
+        container.className = 'app-notification-container'; 
+        document.body.appendChild(container);
     }
+
+    const toast = document.createElement('div');
+    toast.className = `app-notification-item ${type}`; 
+    toast.textContent = message;
+
+    container.appendChild(toast);
+    
+    setTimeout(() => {
+        toast.remove();
+    }, 3000);
 }
 
 // Add this to your render.js
@@ -149,6 +159,7 @@ export function renderProductDetail(product, container) {
     addToCartBtn.addEventListener('click', () => {
         cartService.addItem(product);
         // You can call your showToast function here too!
+        showToast(`${product.name} added to cart!`);
     });
 
     // 4. Assemble the Info Div
@@ -196,12 +207,12 @@ export function renderCartSummary(container) {
 export function renderCartPage(items, container) {
     if (!container) return;
     container.innerHTML = '';
-
+// <a href="index.html" class="btn-primary">Continue Shopping</a>
     if (items.length === 0) {
         container.innerHTML = `
             <div class="empty-cart">
                 <p>Your cart is empty!</p>
-                <a href="index.html" class="btn-primary">Continue Shopping</a>
+                
             </div>`;
         return;
     }
@@ -244,6 +255,7 @@ export function renderCartPage(items, container) {
 
         row.querySelector('.remove-btn').onclick = () => {
             cartService.removeItem(item.product.id);
+            showToast("Item removed from cart.", "danger");
             renderCartPage(cartService.items, container);
         };
 
@@ -256,4 +268,13 @@ export function renderCartPage(items, container) {
         renderCartSummary(summaryContainer);
     }
     // renderCartSummary(); // Function to update the final total at the bottom
+
+}
+
+
+export function toggleLoader(show) {
+    const loader = document.getElementById('global-loader');
+    if (loader) {
+        loader.style.display = show ? 'flex' : 'none';
+    }
 }
