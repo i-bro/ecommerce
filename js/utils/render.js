@@ -85,6 +85,10 @@ export function showToast(message, type = 'success') {
         container.className = 'app-notification-container'; 
         document.body.appendChild(container);
     }
+    // Optional: Only show the 3 newest toasts
+        while (container.children.length >= 3) {
+        container.removeChild(container.firstChild);
+    }
 
     const toast = document.createElement('div');
     toast.className = `app-notification-item ${type}`; 

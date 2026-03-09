@@ -19,6 +19,29 @@
 .detail-price { font-size: 2rem; color: var(--primary); font-weight: bold; }
 .category-tag { text-transform: uppercase; color: #64748b; font-weight: 600; }
 
+.btn-large{
+    background: linear-gradient(90deg, #2563eb, #3b82f6);
+    padding: 8px;
+    border-radius: 25px;
+    width: 150px;
+}
+.back-to-shop{
+    background: linear-gradient(90deg, #2563eb, #3b82f6);
+    padding: 8px;
+    border-radius: 25px;
+    width: 150px;
+    text-decoration: none;
+    color: white;
+}
+#cart-count{
+    font-weight: 700;
+    font-size: 20px;
+}
+.card-count-wraper{
+    width: 150px;
+}
+
+
 /* Responsive: Stack columns on mobile */
 @media (max-width: 768px) {
     .detail-grid {
