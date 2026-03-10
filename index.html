@@ -19,7 +19,7 @@
     </div>
     <header class="fixed-top">
       
-      <nav class="container d-flex justify-content-between align-items-center fixed-top">
+      <!-- <nav class="container d-flex justify-content-between align-items-center fixed-top">
         <div class="brand-wrapper">
             <span class="logo-icon">✨</span> 
             <a class="logo-text text-decoration-none" href="./index.html">
@@ -48,7 +48,51 @@
             🛒 <span id="cart-count">0</span>
           </div>
         </div>
-    </nav>
+    </nav> -->
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm">
+    <div class="container">
+        <div class="brand-wrapper navbar-brand d-flex align-items-center">
+            <span class="logo-icon me-2">✨</span>
+            <a class="logo-text text-decoration-none" href="./index.html">
+                LUMINA<span class="tech-accent">TECH</span>
+            </a>
+        </div>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarControls" aria-controls="navbarControls" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarControls">
+            <div class="navbar-nav ms-auto align-items-lg-center">
+                
+                <select id="category-filter" class="form-select form-select-sm m-lg-1 my-2 input-group">
+                    <option value="all">All Categories</option>
+                </select>
+
+                <form id="search-form" class="d-flex m-lg-1 my-2 input-group">
+                    <input class="form-control form-control-sm  me-2" type="text" id="search-input" placeholder="Search products...">
+                    <button class="btn btn-sm btn-primary" type="submit">Search</button>
+                </form>
+
+                <select id="sort-price" class="form-select form-select-sm m-lg-1 my-2 input-group">
+                    <option value="default">Sort Price</option>
+                    <option value="low">Low to High</option>
+                    <option value="high">High to Low</option>
+                </select>
+
+                <div class="cart-icon ms-lg-3 my-2 position-relative d-inline-block" id="cart-toggle" style="cursor: pointer;">
+                    <span class="fs-4">🛒</span>
+                    <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        0
+                    </span>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+
     </header>
 
     <main>

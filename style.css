@@ -6,7 +6,13 @@
     --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
 }
 
-body { font-family: 'Inter', sans-serif; background: var(--light); color: var(--dark); margin: 0; }
+body { 
+    font-family: 'Inter', sans-serif; 
+    background: var(--light); 
+    color: var(--dark); 
+    margin: 0;
+    padding-top: 70px; 
+}
 .container{
   /* max-width: 1200px; */
   margin: 0 auto;
@@ -36,6 +42,27 @@ body { font-family: 'Inter', sans-serif; background: var(--light); color: var(--
     color: var(--primary); /* #2563eb */
 }
 
+
+/* Target only when the navbar is expanded (Desktop) */
+@media (min-width: 992px) {
+    #category-filter, 
+    #sort-price {
+        min-width: 150px; /* Give both selects a matching base width */
+        width: auto;
+    }
+
+    #search-form {
+        min-width: 250px; /* Make search slightly more prominent */
+        flex-grow: 1;      /* Let it fill extra space if available */
+        max-width: 400px;  /* But don't let it get crazy wide */
+    }
+}
+@media (max-width:490px) {
+    .translate-middle {
+        transform: translate(-170%,25%)!important;
+    }
+}
+
 /* hero */
 .hero {
     background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
@@ -49,9 +76,7 @@ body { font-family: 'Inter', sans-serif; background: var(--light); color: var(--
     justify-content: space-between;
 }
 
-/* .hero-content {
-    max-width: 600px;
-} */
+
 
 .hero-tag {
     display: inline-block;
@@ -71,10 +96,27 @@ body { font-family: 'Inter', sans-serif; background: var(--light); color: var(--
     font-weight: 800;
 }
 
-.text-gradient {
+/* .text-gradient {
     background: linear-gradient(90deg, #2563eb, #3b82f6);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+} */
+
+.text-gradient {
+
+
+
+    background: linear-gradient(90deg, #2563eb, #3b82f6);
+    
+    /* 1. The Webkit versions (for Chrome/Safari/Brave) */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+    /* 2. The Standard versions (The "Fix" for the warning) */
+    background-clip: text; 
+    /* Note: text-fill-color is a non-standard webkit property. 
+       Standard CSS usually uses 'color: transparent' with background-clip. */
+    color: transparent; 
 }
 
 .hero p {
