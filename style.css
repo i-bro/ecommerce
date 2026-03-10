@@ -1,260 +1,269 @@
 :root {
-    --primary: #2563eb;
-    --dark: #1e293b;
-    --light: #f8fafc;
-    --accent: #f59e0b;
-    --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --primary: #2563eb;
+  --dark: #1e293b;
+  --light: #f8fafc;
+  --accent: #f59e0b;
+  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
 }
 
-body { 
-    font-family: 'Inter', sans-serif; 
-    background: var(--light); 
-    color: var(--dark); 
-    margin: 0;
-    padding-top: 70px; 
+body {
+  font-family: "Inter", sans-serif;
+  background: var(--light);
+  color: var(--dark);
+  margin: 0;
+  padding-top: 70px;
 }
-.container{
-  /* max-width: 1200px; */
+.container {
   margin: 0 auto;
-  padding: 5px 20px; 
+  padding: 5px 20px;
 }
 
 .brand-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .logo-icon {
-    font-size: 24px;
-    color: var(--accent); /* #f59e0b */
-    text-shadow: 0 0 10px rgba(245, 158, 11, 0.5); /* Modern "glowing" effect */
+  font-size: 24px;
+  color: var(--accent);
+  text-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
 }
 
 .logo-text {
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--dark);
-    letter-spacing: -0.5px;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--dark);
+  letter-spacing: -0.5px;
 }
 
 .tech-accent {
-    color: var(--primary); /* #2563eb */
+  color: var(--primary);
 }
 
-
-/* Target only when the navbar is expanded (Desktop) */
+/*  only when the navbar is expanded (Desktop) */
 @media (min-width: 992px) {
-    #category-filter, 
-    #sort-price {
-        min-width: 150px; /* Give both selects a matching base width */
-        width: auto;
-    }
+  #category-filter,
+  #sort-price {
+    min-width: 150px;
+    width: auto;
+  }
 
-    #search-form {
-        min-width: 250px; /* Make search slightly more prominent */
-        flex-grow: 1;      /* Let it fill extra space if available */
-        max-width: 400px;  /* But don't let it get crazy wide */
-    }
+  #search-form {
+    min-width: 250px;
+    flex-grow: 1;
+    max-width: 400px;
+  }
 }
-@media (max-width:490px) {
-    .translate-middle {
-        transform: translate(-170%,25%)!important;
-    }
+@media (max-width: 490px) {
+  .translate-middle {
+    transform: translate(-170%, 25%) !important;
+  }
 }
 
 /* hero */
 .hero {
-    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-    padding: 80px 20px;
-    overflow: hidden;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  padding: 80px 20px;
+  overflow: hidden;
 }
 
 .hero-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-
-
 .hero-tag {
-    display: inline-block;
-    background: rgba(37, 99, 235, 0.1);
-    color: var(--primary);
-    padding: 5px 15px;
-    border-radius: 20px;
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 20px;
+  display: inline-block;
+  background: rgba(37, 99, 235, 0.1);
+  color: var(--primary);
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 20px;
 }
 
 .hero h1 {
-    font-size: 2rem;
-    line-height: 1.1;
-    margin-bottom: 20px;
-    font-weight: 800;
+  font-size: 2rem;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  font-weight: 800;
 }
 
-/* .text-gradient {
-    background: linear-gradient(90deg, #2563eb, #3b82f6);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-} */
-
 .text-gradient {
+  background: linear-gradient(90deg, #2563eb, #3b82f6);
 
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 
+  background-clip: text;
 
-    background: linear-gradient(90deg, #2563eb, #3b82f6);
-    
-    /* 1. The Webkit versions (for Chrome/Safari/Brave) */
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    
-    /* 2. The Standard versions (The "Fix" for the warning) */
-    background-clip: text; 
-    /* Note: text-fill-color is a non-standard webkit property. 
-       Standard CSS usually uses 'color: transparent' with background-clip. */
-    color: transparent; 
+  color: transparent;
 }
 
 .hero p {
-    font-size: 1.2rem;
-    color: #64748b;
-    margin-bottom: 30px;
-    line-height: 1.6;
+  font-size: 1.2rem;
+  color: #64748b;
+  margin-bottom: 30px;
+  line-height: 1.6;
 }
-
-
 /* hero */
 
 /* Product Grid */
 .product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 2rem;
-    padding: 2rem 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2rem;
+  padding: 2rem 0;
 }
 
 .product-card {
-    background: white;
-    padding: 1.5rem;
-    border-radius: 12px;
-    box-shadow: var(--shadow);
-    transition: transform 0.2s;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
-.btn-add-to-cart{
-    background: linear-gradient(90deg, #2563eb, #3b82f6);
-    border-radius: 25px;
-    padding: 8px;
+.btn-add-to-cart {
+  background: linear-gradient(90deg, #2563eb, #3b82f6);
+  border-radius: 25px;
+  padding: 8px;
 }
 
-.product-card:hover { transform: translateY(-5px); }
-.product-card img { width: 100%; height: 200px; object-fit: contain; }
+.product-card:hover {
+  transform: translateY(-5px);
+}
+.product-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+}
 
 /* Loading State */
 .skeleton {
-    background: #e2e8f0;
-    height: 200px;
-    border-radius: 8px;
-    animation: pulse 1.5s infinite;
+  background: #e2e8f0;
+  height: 200px;
+  border-radius: 8px;
+  animation: pulse 1.5s infinite;
 }
 
-@keyframes pulse { 50% { opacity: 0.5; } }
+@keyframes pulse {
+  50% {
+    opacity: 0.5;
+  }
+}
 
 /* Sidebar Cart */
 #cart-sidebar {
-    position: fixed;
-    right: 0; top: 0; height: 100%;
-    width: 350px;
-    background: white;
-    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
-    z-index: 1000;
-    padding: 2rem;
-    transition: transform 0.3s ease;
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 350px;
+  background: white;
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  padding: 2rem;
+  transition: transform 0.3s ease;
 }
-.hidden { transform: translateX(100%); }
+.hidden {
+  transform: translateX(100%);
+}
 
 .product-card {
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    /* This makes the cards feel "fluid" when they re-order */
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
 }
 
 /* Optional: Fade in animation for new products */
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .product-card {
-    animation: fadeIn 0.4s ease-out forwards;
+  animation: fadeIn 0.4s ease-out forwards;
 }
 
 .loader-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.7); /* Light transparent background */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999; /* Stay on top of everything */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
 }
 
 .spinner {
-    width: 50px;
-    height: 50px;
-    border: 5px solid #f3f3f3;
-    border-top: 5px solid #3498db; /* Your theme color */
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
+  width: 50px;
+  height: 50px;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
-/* Container that holds all toasts */
-/* Container */
 /* The wrapper in the bottom corner */
 .app-notification-container {
-    position: fixed !important;
-    bottom: 30px !important; /* Distance from bottom of the SCREEN */
-    right: 30px !important;  /* Distance from right of the SCREEN */
-    width: auto;
-    height: auto;
-    display: flex !important;
-    flex-direction: column-reverse; /* Newest toasts appear at the bottom */
-    gap: 10px;
-    z-index: 2147483647 !important; /* Maximum possible Z-index value */
-    pointer-events: none; /* Let clicks pass through the container itself */
+  position: fixed !important;
+  bottom: 30px !important;
+  right: 30px !important;
+  width: auto;
+  height: auto;
+  display: flex !important;
+  flex-direction: column-reverse;
+  gap: 10px;
+  z-index: 2147483647 !important;
+  pointer-events: none;
 }
 
 .app-notification-item {
-    pointer-events: auto; /* Re-enable clicks for the actual toast */
-    background: #333 !important;
-    color: white !important;
-    padding: 16px 24px;
-    border-radius: 8px;
-    min-width: 280px;
-    max-width: 350px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-    border-left: 5px solid #2563eb;
-    font-family: sans-serif;
-    
-    /* Ensure it doesn't inherit alignment from parents */
-    text-align: left;
-    
-    animation: slideInRight 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, 
-               fadeOut 0.4s ease-in 2.6s forwards;
+  pointer-events: auto;
+  background: #333 !important;
+  color: white !important;
+  padding: 16px 24px;
+  border-radius: 8px;
+  min-width: 280px;
+  max-width: 350px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  border-left: 5px solid #2563eb;
+  font-family: sans-serif;
+
+  text-align: left;
+
+  animation:
+    slideInRight 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards,
+    fadeOut 0.4s ease-in 2.6s forwards;
 }
 
-.app-notification-item.success { border-left-color: #22c55e !important; } /* Green */
-.app-notification-item.danger { border-left-color: #ef4444 !important; }  /* Red */
+.app-notification-item.success {
+  border-left-color: #22c55e !important;
+} /* Green */
+.app-notification-item.danger {
+  border-left-color: #ef4444 !important;
+} /* Red */

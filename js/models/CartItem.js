@@ -4,7 +4,9 @@ export class CartItem {
     this.quantity = quantity;
   }
 
-  get lineTotal() { return this.product.price * this.quantity; }
+  get lineTotal() {
+    return this.product.price * this.quantity;
+  }
 
   increment() {
     if (this.quantity < this.product.stock) this.quantity++;

@@ -1,140 +1,145 @@
-.minus{
-    border: 2px solid #344657;
-    width: 30px;
-    border-radius: 6px;
-    font-size: 18px;
+.minus {
+  border: 2px solid #344657;
+  width: 30px;
+  border-radius: 6px;
+  font-size: 18px;
 }
-.plus{
-     border: 2px solid #344657;
-    width: 30px;
-    border-radius: 6px;
-    font-size: 18px;
+.plus {
+  border: 2px solid #344657;
+  width: 30px;
+  border-radius: 6px;
+  font-size: 18px;
 }
-.remove-btn{
-    border: 2px solid #344657;
-    border-radius: 6px;
-    font-size: 18px;
+.remove-btn {
+  border: 2px solid #344657;
+  border-radius: 6px;
+  font-size: 18px;
 }
-.item-total{
-    padding: 8px;
-    font-size: 18px;
-    font-weight: 500;
+.item-total {
+  padding: 8px;
+  font-size: 18px;
+  font-weight: 500;
 }
 
-.back-to-shop{
-    background: linear-gradient(90deg, #2563eb, #3b82f6);
-    padding: 8px;
-    border-radius: 25px;
-    width: 150px;
-    text-decoration: none;
-    color: white;
+.back-to-shop {
+  background: linear-gradient(90deg, #2563eb, #3b82f6);
+  padding: 8px;
+  border-radius: 25px;
+  width: 150px;
+  text-decoration: none;
+  color: white;
 }
 .cart-summary-card {
-    background: #f8fafc;
-    padding: 2rem;
-    border-radius: 12px;
-    border: 1px solid #e2e8f0;
-    position: sticky;
-    top: 20px;
+  background: #f8fafc;
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  position: sticky;
+  top: 20px;
 }
 
 .summary-row {
-    display: flex;
-    justify-content: space-between;
-    font-size: 1.25rem;
-    font-weight: bold;
-    margin: 1.5rem 0;
-    border-top: 2px solid #e2e8f0;
-    padding-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin: 1.5rem 0;
+  border-top: 2px solid #e2e8f0;
+  padding-top: 1rem;
 }
 
 .grand-total {
-    color: #2563eb; /* Royal Blue */
+  color: #2563eb;
 }
 
 .btn-checkout {
-    width: 100%;
-    padding: 1rem;
-    background: #10b981; /* Success Green */
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
+  width: 100%;
+  padding: 1rem;
+  background: #10b981;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
 }
 
-
-
 .loader-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.7); /* Light transparent background */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999; /* Stay on top of everything */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
 }
 
 .spinner {
-    width: 50px;
-    height: 50px;
-    border: 5px solid #f3f3f3;
-    border-top: 5px solid #3498db; /* Your theme color */
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
+  width: 50px;
+  height: 50px;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* Container */
 .custom-toast-container {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    display: flex !important; /* Force display */
-    flex-direction: column;
-    gap: 12px;
-    z-index: 999999 !important; /* Over everything */
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  display: flex !important;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 999999 !important;
 }
 
-/* Individual Toast */
 /* The wrapper in the bottom corner */
 .app-notification-container {
-    position: fixed !important;
-    bottom: 30px !important; /* Distance from bottom of the SCREEN */
-    right: 30px !important;  /* Distance from right of the SCREEN */
-    width: auto;
-    height: auto;
-    display: flex !important;
-    flex-direction: column-reverse; /* Newest toasts appear at the bottom */
-    gap: 10px;
-    z-index: 2147483647 !important; /* Maximum possible Z-index value */
-    pointer-events: none; /* Let clicks pass through the container itself */
+  position: fixed !important;
+  bottom: 30px !important;
+  right: 30px !important;
+  width: auto;
+  height: auto;
+  display: flex !important;
+  flex-direction: column-reverse;
+  gap: 10px;
+  z-index: 2147483647 !important;
+  pointer-events: none;
 }
 
 .app-notification-item {
-    pointer-events: auto; /* Re-enable clicks for the actual toast */
-    background: #333 !important;
-    color: white !important;
-    padding: 16px 24px;
-    border-radius: 8px;
-    min-width: 280px;
-    max-width: 350px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-    border-left: 5px solid #2563eb;
-    font-family: sans-serif;
-    
-    /* Ensure it doesn't inherit alignment from parents */
-    text-align: left;
-    
-    animation: slideInRight 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, 
-               fadeOut 0.4s ease-in 2.6s forwards;
+  pointer-events: auto;
+  background: #333 !important;
+  color: white !important;
+  padding: 16px 24px;
+  border-radius: 8px;
+  min-width: 280px;
+  max-width: 350px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  border-left: 5px solid #2563eb;
+  font-family: sans-serif;
+
+  text-align: left;
+
+  animation:
+    slideInRight 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards,
+    fadeOut 0.4s ease-in 2.6s forwards;
 }
-.app-notification-item.success { border-left-color: #22c55e !important; } /* Green */
-.app-notification-item.danger { border-left-color: #ef4444 !important; }  /* Red */
+.app-notification-item.success {
+  border-left-color: #22c55e !important;
+} /* Green */
+.app-notification-item.danger {
+  border-left-color: #ef4444 !important;
+} /* Red */
