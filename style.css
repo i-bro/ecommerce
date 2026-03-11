@@ -180,6 +180,12 @@ body {
     transform 0.3s ease,
     opacity 0.3s ease;
 }
+#load-more-btn{
+  background: linear-gradient(90deg, #2563eb, #3b82f6);
+  border-radius: 25px;
+  padding: 8px;
+  width: 150px;
+}
 
 /* Optional: Fade in animation for new products */
 @keyframes fadeIn {
